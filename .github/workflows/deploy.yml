@@ -10,9 +10,14 @@ on:
                 type: string
                 required: true
                 description: "Imagens a serem atualizadas no manifesto"
+            environment:
+                type: string
+                required: true
+                description: "Ambiente de deploy"
 jobs:
     CD:
       runs-on: ubuntu-latest
+      environment: ${{ inputs.environment }}
       steps:
         - name: "Obtendo um código"
           uses: actions/checkout@v4
@@ -26,3 +31,4 @@ jobs:
           with:
              manifests: ${{ inputs.manifest }}
              images: ${{ inputs.images }}
+             namespace: ${{ vars.APP_NAMESPACE }}
