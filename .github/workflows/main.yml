@@ -26,4 +26,7 @@ jobs:
   CD:
     needs: [CI]
     uses: thiagomsarrais/primeira-pipeline-cicd/.github/workflows/deploy.yml@main
+    with:
+      manifest: k8s/deployment.yaml
+      images: thiagomsarrais/aula-primeira-pipeline:v${{ github.run_number }}
     secrets: inherit
